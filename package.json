@@ -1,0 +1,58 @@
+{
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "lint": "eslint .",
+    "build": "rollup -c",
+    "build:dev": "rollup -c -w",
+    "build:manifest": "babel-node build-manifest.js",
+    "check": "npm run build && npm run test && npm run coverage && npm run lint",
+    "pretest": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "name": "aws-sdk-mock",
+  "description": "Jest mocking utility for AWS Javascript SDK",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/specialblend/aws-sdk-mock.git"
+  },
+  "keywords": [
+    "aws",
+    "sdk",
+    "jest",
+    "mock"
+  ],
+  "author": "cj@specialblend.net",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/specialblend/aws-sdk-mock/issues"
+  },
+  "homepage": "https://github.com/specialblend/aws-sdk-mock#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@specialblend/eslint-config": "^0.1.1",
+    "aws-sdk": "^2.488.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.0.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "jest": "^24.8.0",
+    "jest-extended": "^0.11.1",
+    "rollup": "^1.16.4"
+  },
+  "dependencies": {
+    "lodash.memoize": "^4.1.2",
+    "ramda": "^0.26.1"
+  }
+}
