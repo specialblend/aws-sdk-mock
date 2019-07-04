@@ -2,7 +2,7 @@
   "output": {
     "manifest": "./manifest.json",
     "exports": "./dist/",
-    "tests": "./tests/"
+    "mocks": "./__mocks__/"
   },
   "services": [
     "ACM",
