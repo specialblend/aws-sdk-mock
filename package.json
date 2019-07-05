@@ -19,7 +19,8 @@
     "app": "./bin/app"
   },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "name": "@specialblend/aws-sdk-mock",
   "description": "Jest mock generator for AWS Javascript SDK",
