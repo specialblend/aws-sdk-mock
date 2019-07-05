@@ -15,6 +15,7 @@
   },
   "files": [
     "bin",
+    "lib",
     "manifest.json"
   ],
   "name": "@specialblend/aws-sdk-mock",
