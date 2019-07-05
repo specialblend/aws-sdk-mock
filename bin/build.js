@@ -2,11 +2,8 @@
 
 const { writeFile } = require('fs');
 const { count } = require('../lib/common');
-const { services } = require('../manifest.json');
-const { output } = require('../build.config.json');
-const buildManifest = require('../lib/mocks');
-
-const { manifest: outputFilePath } = output;
+const { outputFilePath, services } = require('../build.config.json');
+const buildManifest = require('../lib/manifest');
 
 const logger = name => console.log(`Building service: ${name}`);
 

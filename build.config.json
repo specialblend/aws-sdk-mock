@@ -1,13 +1,5 @@
 {
-  "output": {
-    "manifest": "./manifest.json",
-    "exports": "./dist/",
-    "mocks": "./__mocks__/aws-sdk.js"
-  },
-  "enabledServices": [
-    "S3",
-    "DynamoDB"
-  ],
+  "outputFilePath": "./manifest.json",
   "services": [
     "ACM",
     "ACMPCA",
