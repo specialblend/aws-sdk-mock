@@ -15,9 +15,20 @@ const handleBuild = (outputFile, selectedServices) => {
     console.log(`Built mocks for (${count(enabledServices)}) services to file: ${outputFile}.`);
 };
 
+const handleBuildAll = outputFile => {
+    const enabledServices = availableServices;
+    const contents = buildMocks(enabledServices, logger);
+    writeFileSync(outputFile, contents);
+    console.log(`Built mocks for (${count(enabledServices)}) services to file: ${outputFile}.`);
+};
+
 app
     .command('build <outputFile>')
     .option('-s, --service <name>', 'Add a AWS services (case-sensitive)', collect)
     .action(useWith(handleBuild, [identity, prop('service')]));
+
+app
+    .command('build:all <outputFile>')
+    .action(handleBuildAll);
 
 app.parse(process.argv);
