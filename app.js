@@ -4,9 +4,9 @@ const assert = require('assert');
 const cli = require('commander');
 const { writeFileSync } = require('fs');
 const { pick, prop } = require('ramda');
-const { count, collect, isEmptyOrNil } = require('../lib/common');
-const buildMocks = require('../lib/mocks');
-const manifest = require('../manifest.json');
+const { count, collect, isEmptyOrNil } = require('./lib/common');
+const buildMocks = require('./lib/mocks');
+const manifest = require('./manifest.json');
 
 const argv = process.argv;
 const availableServices = prop('services', manifest);

@@ -1,5 +1,5 @@
 {
-  "main": "./bin/app.js",
+  "main": "app.js",
   "version": "0.0.13",
   "scripts": {
     "test": "jest",
@@ -11,7 +11,7 @@
     "prepublishOnly": "npm run build"
   },
   "bin": {
-    "aws-sdk-mock": "./bin/app.js"
+    "aws-sdk-mock": "app.js"
   },
   "files": [
     "bin",
