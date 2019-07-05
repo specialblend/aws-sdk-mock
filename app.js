@@ -33,17 +33,24 @@ cli
     .description('build mocks for selected AWS SDK services')
     .option('-s, --service <name>', 'Add a AWS SDK service (case-sensitive)', collect)
     .action((cmd, outputFile, args) => {
-        assert(!isEmptyOrNil(args.service), 'Please specify at least one service');
-        handleBuild(outputFile, args.service);
+        try {
+            assert(!isEmptyOrNil(args.service), 'Please specify at least one service');
+            handleBuild(outputFile, args.service);
+        } catch (err) {
+            console.error(err);
+            console.debug({ cmd, outputFile, args });
+        }
     });
 
 cli
     .command('build-all <outputFile>', 'build mocks for all AWS SDK services')
-    .action((cmd, outputFile) => handleBuildAll(outputFile));
+    .action((cmd, outputFile) => {
+        try {
+            handleBuildAll(outputFile);
+        } catch (err) {
+            console.error(err);
+            console.debug({ cmd, outputFile });
+        }
+    });
 
-try {
-    cli.parse(argv);
-} catch (err) {
-    console.error(err);
-    console.log('argv', argv);
-}
+cli.parse(argv);
