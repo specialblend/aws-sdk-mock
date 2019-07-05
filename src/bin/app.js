@@ -17,7 +17,7 @@ const handleBuild = (outputFile, selectedServices) => {
 
 app
     .command('build <outputFile>')
-    .option('-s, --service <name>', 'Add a AWS services (case-sensitive)', collect, [])
+    .option('-s, --service <name>', 'Add a AWS services (case-sensitive)', collect)
     .action(useWith(handleBuild, [identity, prop('service')]));
 
 app.parse(process.argv);
