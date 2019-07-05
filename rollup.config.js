@@ -19,15 +19,16 @@ export default [
             },
             {
                 file: packageJSON.module,
-                format: 'es',
+                format: 'esm',
             },
         ],
     },
     {
         input: 'src/bin/app.js',
         output: {
+            banner: '#!/usr/bin/env ./node_modules/.bin/babel-node',
             file: packageJSON.bin['aws-sdk-mock'],
-            format: 'cjs',
+            format: 'esm',
         },
     },
     {
