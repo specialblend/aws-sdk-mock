@@ -21,7 +21,7 @@
   "files": [
     "dist"
   ],
-  "name": "aws-sdk-mock",
+  "name": "@specialblend/aws-sdk-mock",
   "description": "Jest mock generator for AWS Javascript SDK",
   "repository": {
     "type": "git",
