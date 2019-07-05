@@ -1,6 +1,6 @@
 {
   "main": "app.js",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
