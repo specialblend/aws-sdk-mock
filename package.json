@@ -20,7 +20,8 @@
   },
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "manifest.json"
   ],
   "name": "@specialblend/aws-sdk-mock",
   "description": "Jest mock generator for AWS Javascript SDK",
