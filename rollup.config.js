@@ -1,8 +1,9 @@
+import json from 'rollup-plugin-json';
 import packageJSON from './package.json';
 
 export default [
     {
-        input: 'src/main.js',
+        input: 'src/index.js',
         output: {
             name: 'index',
             file: packageJSON.browser,
@@ -10,7 +11,7 @@ export default [
         },
     },
     {
-        input: 'src/main.js',
+        input: 'src/index.js',
         output: [
             {
                 file: packageJSON.main,
@@ -21,5 +22,25 @@ export default [
                 format: 'es',
             },
         ],
+    },
+    {
+        input: 'src/bin/app.js',
+        output: {
+            file: packageJSON.bin.app,
+            format: 'cjs',
+        },
+    },
+    {
+        plugins: [
+            json({
+                include: './manifest.json',
+            }),
+        ],
+        input: 'manifest.json',
+        output: {
+            name: 'manifest',
+            file: './bin/manifest.js',
+            format: 'cjs',
+        },
     },
 ];

@@ -9,16 +9,20 @@
     "lint": "eslint .",
     "build": "rollup -c",
     "build:dev": "rollup -c -w",
-    "build:manifest": "babel-node build-manifest.js",
+    "build:manifest": "babel-node src/bin/build-manifest.js",
+    "build:mocks": "babel-node src/bin/build-mocks.js",
     "check": "npm run build && npm run test && npm run coverage && npm run lint",
     "pretest": "npm run build",
     "prepublishOnly": "npm run build"
+  },
+  "bin": {
+    "app": "./bin/app"
   },
   "files": [
     "dist"
   ],
   "name": "aws-sdk-mock",
-  "description": "Jest mocking utility for AWS Javascript SDK",
+  "description": "Jest mock generator for AWS Javascript SDK",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/specialblend/aws-sdk-mock.git"
@@ -49,9 +53,12 @@
     "eslint-plugin-babel": "^5.3.0",
     "jest": "^24.8.0",
     "jest-extended": "^0.11.1",
-    "rollup": "^1.16.4"
+    "rollup": "^1.16.4",
+    "rollup-plugin-json": "^4.0.0"
   },
   "dependencies": {
+    "@specialblend/unpromisify": "0.0.0",
+    "commander": "^2.20.0",
     "lodash.memoize": "^4.1.2",
     "ramda": "^0.26.1"
   }
