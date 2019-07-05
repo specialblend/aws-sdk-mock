@@ -32,13 +32,13 @@ cli
     .command('build <outputFile>')
     .description('build mocks for selected AWS SDK services')
     .option('-s, --service <name>', 'Add a AWS SDK service (case-sensitive)', collect)
-    .action((cmd, outputFile, args) => {
+    .action((outputFile, args) => {
         try {
             assert(!isEmptyOrNil(args.service), 'Please specify at least one service');
             handleBuild(outputFile, args.service);
         } catch (err) {
             console.error(err);
-            console.debug({ cmd, outputFile, args });
+            console.debug({ outputFile, args });
         }
     });
 
