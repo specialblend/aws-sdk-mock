@@ -1,16 +1,11 @@
 {
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "browser": "dist/index.umd.js",
+  "main": "./bin/app.js",
   "version": "0.0.10",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint .",
-    "build": "rollup -c",
-    "build:dev": "rollup -c -w",
-    "build:manifest": "babel-node src/bin/build-manifest.js",
-    "build:mocks": "babel-node src/bin/build-mocks.js",
+    "build": "babel-node bin/build.js",
     "check": "npm run build && npm run test && npm run coverage && npm run lint",
     "pretest": "npm run build",
     "prepublishOnly": "npm run build"
@@ -19,7 +14,6 @@
     "aws-sdk-mock": "./bin/app.js"
   },
   "files": [
-    "dist",
     "bin",
     "manifest.json"
   ],

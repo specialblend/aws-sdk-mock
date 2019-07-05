@@ -1,7 +1,10 @@
-import { writeFile } from 'fs';
-import { buildManifest } from '../lib/manifest';
-import { count } from '../lib/common';
-import { output, services } from '../../build.config.json';
+#!/usr/bin/env node
+
+const { writeFile } = require('fs');
+const { count } = require('../lib/common');
+const { services } = require('../manifest.json');
+const { output } = require('../build.config.json');
+const buildManifest = require('../lib/mocks');
 
 const { manifest: outputFilePath } = output;
 

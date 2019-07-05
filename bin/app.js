@@ -1,12 +1,14 @@
-import assert from 'assert';
-import cli from 'commander';
-import { writeFileSync } from 'fs';
-import { insert, isEmpty, pick, prop, tail } from 'ramda';
-import { buildMocks } from '../lib/mocks';
-import { collect, count, isEmptyOrNil } from '../lib/common';
+#!/usr/bin/env node
 
-const argv = (process.argv);
-const manifest = require('./manifest');
+const assert = require('assert');
+const cli = require('commander');
+const { writeFileSync } = require('fs');
+const { pick, prop } = require('ramda');
+const { count, collect, isEmptyOrNil } = require('../lib/common');
+const buildMocks = require('../lib/mocks');
+const manifest = require('../manifest.json');
+
+const argv = process.argv;
 const availableServices = prop('services', manifest);
 const logger = name => console.log(`Building mocks for service: ${name}`);
 
