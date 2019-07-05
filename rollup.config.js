@@ -26,9 +26,9 @@ export default [
     {
         input: 'src/bin/app.js',
         output: {
-            banner: '#!/usr/bin/env babel-node',
+            banner: '#!/usr/bin/env node --',
             file: packageJSON.bin['aws-sdk-mock'],
-            format: 'esm',
+            format: 'umd',
         },
     },
     {

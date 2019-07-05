@@ -1,6 +1,6 @@
-import app from 'commander';
+import cli from 'commander';
 import { writeFileSync } from 'fs';
-import { identity, pick, prop, useWith } from 'ramda';
+import { pick, prop } from 'ramda';
 import { buildMocks } from '../lib/mocks';
 import { collect, count } from '../lib/common';
 
@@ -9,6 +9,7 @@ const availableServices = prop('services', manifest);
 const logger = name => console.log(`Building mocks for service: ${name}`);
 
 const handleBuild = (outputFile, selectedServices) => {
+    console.log('Building mocks for services:', selectedServices);
     const enabledServices = pick(selectedServices, availableServices);
     const contents = buildMocks(enabledServices, logger);
     writeFileSync(outputFile, contents);
@@ -16,19 +17,22 @@ const handleBuild = (outputFile, selectedServices) => {
 };
 
 const handleBuildAll = outputFile => {
+    console.log('Building mocks for all services');
     const enabledServices = availableServices;
     const contents = buildMocks(enabledServices, logger);
     writeFileSync(outputFile, contents);
     console.log(`Built mocks for (${count(enabledServices)}) services to file: ${outputFile}.`);
 };
 
-app
+cli
     .command('build <outputFile>', 'build mocks for selected AWS SDK services')
     .option('-s, --service <name>', 'Add a AWS SDK service (case-sensitive)', collect)
-    .action(useWith(handleBuild, [identity, prop('service')]));
+    .action((outputFile, args) => {
+        handleBuild(outputFile, args.service);
+    });
 
-app
+cli
     .command('build:all <outputFile>', 'build mocks for all AWS SDK services')
     .action(handleBuildAll);
 
-app.parse(process.argv);
+cli.parse(process.argv);
