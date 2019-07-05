@@ -26,7 +26,7 @@ export default [
     {
         input: 'src/bin/app.js',
         output: {
-            file: packageJSON.bin.app,
+            file: packageJSON.bin['aws-sdk-mock'],
             format: 'cjs',
         },
     },

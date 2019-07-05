@@ -16,7 +16,7 @@
     "prepublishOnly": "npm run build"
   },
   "bin": {
-    "app": "./bin/app"
+    "aws-sdk-mock": "./bin/app"
   },
   "files": [
     "dist",
