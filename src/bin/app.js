@@ -23,12 +23,12 @@ const handleBuildAll = outputFile => {
 };
 
 app
-    .command('build <outputFile>')
-    .option('-s, --service <name>', 'Add a AWS services (case-sensitive)', collect)
+    .command('build <outputFile>', 'build mocks for selected AWS SDK services')
+    .option('-s, --service <name>', 'Add a AWS SDK service (case-sensitive)', collect)
     .action(useWith(handleBuild, [identity, prop('service')]));
 
 app
-    .command('build:all <outputFile>')
+    .command('build:all <outputFile>', 'build mocks for all AWS SDK services')
     .action(handleBuildAll);
 
 app.parse(process.argv);
