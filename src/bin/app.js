@@ -36,7 +36,7 @@ cli
     });
 
 cli
-    .command('build:all <outputFile>', 'build mocks for all AWS SDK services')
+    .command('build-all <outputFile>', 'build mocks for all AWS SDK services')
     .action(handleBuildAll);
 
 try {
