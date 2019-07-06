@@ -1,6 +1,6 @@
 {
   "main": "aws-sdk-mock.js",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
