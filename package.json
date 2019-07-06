@@ -1,19 +1,19 @@
 {
-  "main": "app.js",
+  "main": "aws-sdk-mock.js",
   "version": "0.0.16",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint .",
     "build": "npm run build:mainfest",
-    "build:mainfest": "babel-node bin/build.js",
-    "build:mocks": "babel-node app.js -s S3",
+    "build:mainfest": "babel-node bin/build-manifest.js",
+    "build:mocks": "babel-node aws-sdk-mock.js -s S3",
     "check": "npm run build && npm run test && npm run coverage && npm run lint",
     "pretest": "npm run build:mocks",
     "prepublishOnly": "npm run build"
   },
   "bin": {
-    "aws-sdk-mock": "app.js"
+    "aws-sdk-mock": "aws-sdk-mock.js"
   },
   "files": [
     "bin",
