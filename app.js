@@ -20,36 +20,24 @@ const handleBuild = (outputFile, selectedServices) => {
     console.log(`Built mocks for (${count(enabledServices)}) services to file: ${outputFile}.`);
 };
 
-const handleBuildAll = outputFile => {
-    console.log('Building mocks for all services');
-    const enabledServices = availableServices;
-    const contents = buildMocks(enabledServices, logger);
-    writeFileSync(outputFile, contents);
-    console.log(`Built mocks for (${count(enabledServices)}) services to file: ${outputFile}.`);
-};
-
 cli
-    .command('build <outputFile>')
     .description('build mocks for selected AWS SDK services')
-    .option('-s, --service <name>', 'Add a AWS SDK service (case-sensitive)', collect)
-    .action((outputFile, args) => {
-        try {
-            assert(!isEmptyOrNil(args.service), 'Please specify at least one service');
-            handleBuild(outputFile, args.service);
-        } catch (err) {
-            console.error(err);
-            console.debug({ outputFile, args });
+    .option('-o, --output <outputFile>', 'Specify the output file', '__mocks__/aws-sdk.js')
+    .option('-s, --service <name>', 'Add a AWS SDK service (case-sensitive)', collect, [])
+    .action(args => {
+        if (isEmptyOrNil(args.service)) {
+            console.error('Please specify at least one service\n');
+            cli.outputHelp(output => {
+                console.log(output);
+                process.exit(1);
+            });
         }
-    });
-
-cli
-    .command('build-all <outputFile>', 'build mocks for all AWS SDK services')
-    .action((cmd, outputFile) => {
         try {
-            handleBuildAll(outputFile);
+            handleBuild(args.output, args.service);
+            process.exit(0);
         } catch (err) {
             console.error(err);
-            console.debug({ cmd, outputFile });
+            process.exit(1);
         }
     });
 

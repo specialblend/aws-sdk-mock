@@ -1,25 +1,21 @@
-import AWS from 'aws-sdk';
-
-const service = 'S3';
-const method = 'createBucket';
+import { S3 } from 'aws-sdk';
 
 describe('service', () => {
-    const { [service]: ServiceFactory } = AWS;
     test('is a function', () => {
-        expect(ServiceFactory).toBeFunction();
+        expect(S3).toBeFunction();
     });
-    test('has expected static method createBucket', () => {
-        expect(ServiceFactory[method]).toBeFunction();
+    test('has expected static method listBuckets', () => {
+        expect(S3.listBuckets).toBeFunction();
     });
     describe('instance', () => {
         const options = Symbol('options');
-        const serviceInstance = new ServiceFactory(options);
+        const s3 = new S3(options);
         test('calls constructor with expected options', () => {
-            expect(ServiceFactory).toHaveBeenCalledWith(options);
+            expect(S3).toHaveBeenCalledWith(options);
         });
         describe('*[method]', () => {
             test('is a function', () => {
-                expect(serviceInstance[method]).toBeFunction();
+                expect(S3.listBuckets).toBeFunction();
             });
             describe('when called', () => {
                 const foo = Symbol('foo');
@@ -30,17 +26,17 @@ describe('service', () => {
                 let resolveResponse = null;
                 let rejectResponse = null;
                 beforeAll(() => {
-                    ServiceFactory[method].mockResolvedValueOnce(baz);
-                    serviceInstance[method](...params, (err, data) => {
+                    S3.listBuckets.mockResolvedValueOnce(baz);
+                    s3.listBuckets(...params, (err, data) => {
                         resolveResponse = [err, data];
                     });
-                    ServiceFactory[method].mockRejectedValueOnce(faz);
-                    serviceInstance[method](...params, (err, data) => {
+                    S3.listBuckets.mockRejectedValueOnce(faz);
+                    s3.listBuckets(...params, (err, data) => {
                         rejectResponse = [err, data];
                     });
                 });
                 test('calls static async handler correctly', () => {
-                    expect(ServiceFactory[method]).toHaveBeenCalledWith(...params);
+                    expect(S3.listBuckets).toHaveBeenCalledWith(...params);
                 });
                 test('invokes callback with resolved result of async handler', () => {
                     const [err, result] = resolveResponse;

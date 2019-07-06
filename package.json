@@ -5,9 +5,11 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint .",
-    "build": "babel-node bin/build.js",
+    "build": "npm run build:mainfest",
+    "build:mainfest": "babel-node bin/build.js",
+    "build:mocks": "babel-node app.js -s S3",
     "check": "npm run build && npm run test && npm run coverage && npm run lint",
-    "pretest": "npm run build",
+    "pretest": "npm run build:mocks",
     "prepublishOnly": "npm run build"
   },
   "bin": {
