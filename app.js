@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const assert = require('assert');
 const cli = require('commander');
 const { writeFileSync } = require('fs');
 const { pick, prop } = require('ramda');
