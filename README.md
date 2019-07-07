@@ -15,7 +15,38 @@ npm install -g @specialblend/aws-sdk-mock
 
 ```
 
-## examples
+## testing/mocking
+
+```javascript
+// foo.test.js
+
+import { S3 } from 'aws-sdk'
+import foo from './foo'
+
+jest.mock('aws-sdk')
+
+describe('foo', () => {
+    const Key = 'example-key'
+    const mockedBody = 'example body'
+    const mockedResult = {
+        Body: Buffer.from(mockedBody),
+    }
+    const expectedPayload = {
+        Bucket: 'example-bucket',
+        Key,
+    }
+    beforeAll(() => {
+        S3.getObject.mockResolvedValueOnce(mockedResult)
+    })
+    test('calls S3.getObject with expected params', async() => {
+        const result = await foo(Key)
+        expect(S3.getObject).toHaveBeenCalledWith(expectedPayload)
+        expect(result).toBe(mockedBody)
+    })
+})
+```
+
+## CLI examples
 
 ```bash
 
@@ -31,8 +62,7 @@ aws-sdk-mock -s S3 -s DynamoDB -o aws-sdk.mock.js
 
 see example output in [__mocks__/aws-sdk.js](__mocks__/aws-sdk.js)
 
-## usage
-
+## CLI syntax
 ```
 Usage: aws-sdk-mock [options]
 
